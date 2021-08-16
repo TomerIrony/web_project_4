@@ -1,11 +1,11 @@
-.elements__card_heart {
+.card__heart {
   transition: linear 0.2s;
   display: inline;
   width: 21px;
   height: 19px;
 }
 
-.elements__card_heart:hover {
+.card__heart:hover {
   opacity: 0.5;
   cursor: pointer;
 }

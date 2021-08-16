@@ -1,4 +1,4 @@
-.elements__card {
+.card {
   display: flex;
   max-width: 282px;
   background-color: white;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .elements__card:last-of-type {
+  .card:last-of-type {
     margin-bottom: 0;
   }
 }
