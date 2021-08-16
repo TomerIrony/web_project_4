@@ -2,15 +2,16 @@
 
 ### Overview
 
-* Figma
-* Images
+* Javascript
+* CSS
+* HTML
 
-**Figma**
+**Javascript**
+Implemented Javascript in the edit profile button and also when liking a photo the heart filles, clicking again removes the filled heart.
+**CSS**
+Mostly used Flexbox in this project to align items
+**HTML**
+In the project I used IDs for the first time and linked them to my Javascript.
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
 
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+[Click here to get to the site](https://tomerirony.github.io/web_project_4/)
