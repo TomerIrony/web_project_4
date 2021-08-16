@@ -2,21 +2,23 @@ let editProfile = document.querySelector(".popout");
 let btn = document.querySelector(".profile__edit");
 let closeProfileBtn = document.getElementById('exitButton');
 let saveButton = document.getElementById('save');
+let fullName = document.getElementById('fullName').textContent
+let description = document.querySelector('.profile__subtitle').textContent
 
-function editProfileShow(){
-  let fullName = document.getElementById('fullName').textContent
-  let description = document.querySelector('.profile__subtitle').textContent
+function openEditProfile(){
+  if(editProfile.style.display == "none"){
   editProfile.style.display = "block";
   document.getElementById('id1').value=fullName; 
   document.getElementById('id2').value=description;
 }
-
-function closeProfileShow(){
+ else{  
   editProfile.style.display = "none";
+ }
 }
+btn.addEventListener('click', openEditProfile);
+closeProfileBtn.addEventListener('click', openEditProfile);
 
-closeProfileBtn.addEventListener('click', closeProfileShow);
-btn.addEventListener('click', editProfileShow);
+
 
 function newSavedName(){
   let newName = document.getElementById('id1').value;
@@ -105,6 +107,8 @@ function unfillHeart6(){
 }
 heart6.addEventListener('click', fillHeart6)
 filledHeart6.addEventListener('click', unfillHeart6)   
+
+
 
 
 
