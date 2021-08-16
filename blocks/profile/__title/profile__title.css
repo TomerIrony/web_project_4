@@ -25,4 +25,7 @@
 
 span {
   align-self: flex-end;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
