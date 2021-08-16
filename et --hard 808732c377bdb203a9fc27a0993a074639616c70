@@ -1,0 +1,61 @@
+[33mcommit d1e13cefad3e1bb084b73ac49392df7b940226e7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: cdcf677 785078a
+Author: Tomer <tomerir5@gmail.com>
+Date:   Mon Aug 16 10:15:22 2021 +0300
+
+    fixed
+
+[33mcommit 785078af9ee072d4e178cd4262e35d3b5ca3b51a[m
+Author: TomerIrony <87696247+TomerIrony@users.noreply.github.com>
+Date:   Mon Aug 16 10:13:48 2021 +0300
+
+    Update README.md
+
+[33mcommit df9dc20fdf72d0d73c47bf5d7c9b637e8538e932[m
+Author: TomerIrony <87696247+TomerIrony@users.noreply.github.com>
+Date:   Mon Aug 16 10:13:20 2021 +0300
+
+    Update README.md
+
+[33mcommit cdcf677f22dad2f18e23fd2e8c9e1733f3736e08[m
+Author: Tomer <tomerir5@gmail.com>
+Date:   Mon Aug 16 10:07:46 2021 +0300
+
+    fixing errors
+
+[33mcommit 808732c377bdb203a9fc27a0993a074639616c70[m
+Author: Tomer <tomerir5@gmail.com>
+Date:   Mon Aug 16 10:02:06 2021 +0300
+
+    popout syntax fix
+
+[33mcommit fd90b7632a2dc1de5abb53b3e1587813335b937c[m
+Author: Tomer <tomerir5@gmail.com>
+Date:   Mon Aug 16 09:39:14 2021 +0300
+
+    edit button margin left
+
+[33mcommit f5f2502a281595000c7d05a7b02925e4590d5f47[m
+Author: Tomer <tomerir5@gmail.com>
+Date:   Mon Aug 16 09:32:00 2021 +0300
+
+    mobile support
+
+[33mcommit 2ae8971dd140048bd1bf80296c1fea5b0051bb8d[m
+Merge: c473c0d f5b470f
+Author: Tomer <tomerir5@gmail.com>
+Date:   Sun Aug 15 19:02:41 2021 +0300
+
+    Merge branch 'main' of https://github.com/TomerIrony/web_project_4
+
+[33mcommit c473c0d7f0b54848549c53d5e292bef00659d2bf[m
+Author: Tomer <tomerir5@gmail.com>
+Date:   Sun Aug 15 19:00:34 2021 +0300
+
+    inital
+
+[33mcommit f5b470fa8ac8ea20a3f6efc229960873b30bf223[m
+Author: TomerIrony <87696247+TomerIrony@users.noreply.github.com>
+Date:   Sun Aug 15 13:34:44 2021 +0300
+
+    Initial commit
