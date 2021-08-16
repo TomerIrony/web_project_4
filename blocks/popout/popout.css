@@ -1,4 +1,4 @@
-.popout__edit {
+.popout {
   display: none;
   position: fixed;
   top: 50%;
@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .popout__edit {
+  .popout {
     min-width: 282px;
   }
 }

@@ -1,4 +1,4 @@
-let editProfile = document.querySelector(".popout__edit");
+let editProfile = document.querySelector(".popout");
 let btn = document.querySelector(".profile__edit");
 let closeProfileBtn = document.getElementById('exitButton');
 let saveButton = document.getElementById('save');

@@ -22,11 +22,12 @@
 @import url(../blocks/elements/__card/_heart/_active/elements__card_heart_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
-@import url(../blocks/popout/__edit/popout__edit.css);
-@import url(../blocks/popout/__edit/_content/popout__edit_content.css);
-@import url(../blocks/popout/__edit/_title/popout__edit_title.css);
-@import url(../blocks/popout/__edit/_exit/popout__edit_exit.css);
+@import url(../blocks/popout/popout.css);
+@import url(../blocks/popout/__content/popout__content.css);
+@import url(../blocks/popout/__title/popout__title.css);
+@import url(../blocks/popout/__exit/popout__exit.css);
 @import url(../blocks/input/input.css);
 @import url(../blocks/input/_type/_name/input__text_type_name.css);
 @import url(../blocks/input/_type/_description/input__text_type_description.css);
 @import url(../blocks/button/form__save-btn.css);
+@import url(../blocks/popout/__edit/__cover/popout__cover.css);
