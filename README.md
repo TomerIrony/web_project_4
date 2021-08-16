@@ -7,10 +7,15 @@
 * HTML
 
 **Javascript**
+
 Implemented Javascript in the edit profile button and also when liking a photo the heart filles, clicking again removes the filled heart.
+
 **CSS**
+
 Mostly used Flexbox in this project to align items
+
 **HTML**
+
 In the project I used IDs for the first time and linked them to my Javascript.
 
 
