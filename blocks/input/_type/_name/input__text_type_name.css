@@ -10,3 +10,11 @@
   line-height: 17px;
   color: #000000;
 }
+
+@media screen and (max-width: 767px) {
+  .input__text_type_name {
+    max-width: 238px;
+    align-self: center;
+    margin: 76px 0 0 0;
+  }
+}

@@ -1,0 +1,4 @@
+.elements__card_heart_active {
+  display: none;
+  cursor: pointer;
+}

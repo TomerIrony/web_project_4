@@ -6,3 +6,16 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 1023px) {
+  .profile {
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    flex-direction: column;
+    margin: 38px auto 0;
+  }
+}

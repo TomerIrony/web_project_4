@@ -19,3 +19,11 @@
 .form__save-btn:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 767px) {
+  .form__save-btn {
+    max-width: 238px;
+    align-self: center;
+    margin: 46px 0 0 0;
+  }
+}

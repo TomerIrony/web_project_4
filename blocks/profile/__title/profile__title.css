@@ -9,3 +9,22 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__title {
+    font-family: Inter;
+    font-style: Medium;
+    font-size: 22px;
+    line-height: 27px;
+    line-height: 100%;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 100vw;
+    margin: 26px 0 0 0;
+  }
+}
+
+span {
+  align-self: flex-end;
+}

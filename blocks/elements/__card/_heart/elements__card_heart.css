@@ -1,5 +1,6 @@
 .elements__card_heart {
   transition: linear 0.2s;
+  display: inline;
 }
 
 .elements__card_heart:hover {

@@ -11,3 +11,10 @@
   color: #000000;
   align-self: center;
 }
+
+@media screen and (max-width: 767px) {
+  .popout__edit_title {
+    min-width: 238px;
+    margin: 25px 0 0 0;
+  }
+}
