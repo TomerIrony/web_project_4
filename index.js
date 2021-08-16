@@ -5,6 +5,7 @@ let saveButton = document.getElementById('save');
 let fullName = document.getElementById('fullName').textContent
 let description = document.querySelector('.profile__subtitle').textContent
 
+editProfile.style.display = "none";
 function openEditProfile(){
   if(editProfile.style.display == "none"){
   editProfile.style.display = "block";
