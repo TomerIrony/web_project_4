@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   transition: linear 0.2s;
+  background: none;
 }
 
 .profile__edit:hover {

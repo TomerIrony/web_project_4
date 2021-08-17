@@ -11,5 +11,6 @@
   .form__heading {
     font-size: 18px;
     margin: 0 0 74px;
+    line-height: 17px;
   }
 }

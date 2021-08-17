@@ -22,7 +22,7 @@ function newSavedName(e) {
   e.preventDefault();   // stop page from refrashing after submiting
   userFullName.textContent = inputName.value;
   userDescription.textContent = inputDescription.value;
-  profileEditWindow.classList.remove('popout_opened')
+  closeEditProfileWindow();
 }
 
 

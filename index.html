@@ -23,15 +23,15 @@
           />
           <div class="profile__text">
             <div class="profile__title">
-              <h2 class="profile__username" id="fullName">Jacques Cousteau</h2>
-              <button type="submit" id="openProfile" class="profile__edit">
+              <h1 class="profile__username" id="fullName">Jacques Cousteau</h1>
+              <button id="openProfile" class="profile__edit">
                 <img class="profile__pen" src="./images/pen.svg" alt="pen" />
               </button>
             </div>
             <p class="profile__subtitle" id="description">Explorer</p>
           </div>
         </div>
-        <button type="submit" class="profile__button">
+        <button class="profile__button">
           <img
             class="profile__plus"
             src="./images/plussign.svg"
@@ -128,50 +128,49 @@
           </div>
         </article>
       </section>
-
-      <div class="popout" id="popoutWindow">
-        <div class="popout__container">
-          <button
-            type="button"
-            aria-label="close"
-            class="popout__close-btn"
-            id="closeProfileButton"
-          ></button>
-          <form action="/" name="profile" class="form" id="form">
-            <fieldset class="form__fieldset">
-              <legend>
-                <h2 class="form__heading">Edit Profile</h2>
-              </legend>
-              <input
-                class="form__text-input"
-                type="text"
-                name="Full Name"
-                id="userInputfullName"
-                placeholder="Full Name"
-              />
-              <input
-                class="form__text-input"
-                type="text"
-                name="Description"
-                id="userInputDescription"
-                placeholder="Description"
-              />
-              <button
-                type="submit"
-                class="form__submit-btn"
-                id="saveInputProfileButton"
-              >
-                Save
-              </button>
-            </fieldset>
-          </form>
-        </div>
-      </div>
-
-      <footer class="footer">
-        <p class="footer__text">© 2021 Around The U.S.</p>
-      </footer>
     </main>
+    <footer class="footer">
+      <p class="footer__text">© 2021 Around The U.S.</p>
+    </footer>
+
+    <div class="popout" id="popoutWindow">
+      <div class="popout__container">
+        <button
+          type="button"
+          aria-label="close"
+          class="popout__close-btn"
+          id="closeProfileButton"
+        ></button>
+        <form action="/" name="profile" class="form" id="form">
+          <fieldset class="form__fieldset">
+            <legend>
+              <h2 class="form__heading">Edit Profile</h2>
+            </legend>
+            <input
+              class="form__text-input"
+              type="text"
+              name="Full Name"
+              id="userInputfullName"
+              placeholder="Full Name"
+            />
+            <input
+              class="form__text-input"
+              type="text"
+              name="Description"
+              id="userInputDescription"
+              placeholder="Description"
+            />
+            <button
+              type="submit"
+              class="form__submit-btn"
+              id="saveInputProfileButton"
+            >
+              Save
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
     <script src="./index.js"></script>
   </body>
 </html>
