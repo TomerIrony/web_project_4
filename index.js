@@ -4,8 +4,8 @@ let closeProfileWindowButton = document.getElementById('closeProfileButton');
 let userFullName = document.getElementById('fullName');
 let userDescription = document.getElementById('description');
 let form = document.getElementById('form');
-let inputName = document.querySelector('.input__text_type_name');
-let inputDescription = document.querySelector('.input__text_type_description');
+let inputName = document.getElementById('userInputfullName');
+let inputDescription = document.getElementById('userInputDescription');
 
 
 function openEditProfileWindow(){
