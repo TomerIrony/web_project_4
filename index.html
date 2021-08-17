@@ -8,36 +8,10 @@
     <title>Around The U.S.</title>
   </head>
   <body class="root">
-    <div id="editProfile" class="popout">
-      <img
-        id="exitButton"
-        class="popout__exit"
-        src="./images/exiticon.svg"
-        alt="exit"
-      />
-
-      <div class="popout__content">
-        <h1 class="popout__title">Edit Profile</h1>
-        <div class="input">
-          <input
-            type="text"
-            class="input__text input__text_type_name"
-            id="id1"
-            placeholder="Full Name"
-          />
-          <input
-            type="text"
-            class="input__text input__text_type_description"
-            id="id2"
-            placeholder="Description"
-          />
-          <button class="input__button" id="save">Save</button>
-        </div>
-      </div>
-    </div>
-
     <header class="header">
-      <img class="header__title" src="./images/logo.svg" alt="logo" />
+      <div class="header__wrapper">
+        <img class="header__title" src="./images/logo.svg" alt="logo" />
+      </div>
     </header>
     <main>
       <section class="profile">
@@ -49,177 +23,150 @@
           />
           <div class="profile__text">
             <div class="profile__title">
-              <span id="fullName">Jacques Cousteau</span>
-              <div id="openProfile" class="profile__edit">
+              <h2 class="profile__username" id="fullName">Jacques Cousteau</h2>
+              <button type="submit" id="openProfile" class="profile__edit">
                 <img class="profile__pen" src="./images/pen.svg" alt="pen" />
-              </div>
+              </button>
             </div>
-            <p class="profile__subtitle">Explorer</p>
+            <p class="profile__subtitle" id="description">Explorer</p>
           </div>
         </div>
-        <div class="profile__button">
+        <button type="submit" class="profile__button">
           <img
             class="profile__plus"
-            src="./images/plus sign.svg"
+            src="./images/plussign.svg"
             alt="plus sign"
           />
-        </div>
+        </button>
       </section>
 
       <section class="elements">
-        <div class="card">
+        <article class="card">
           <img
-            class="card__image"
             src="./images/yosemite.jpg"
-            alt="yosemite valley"
-          />
-          <div class="card__wrapper">
-            <div class="card__title">
-              Yosemite Valley
-              <div>
-                <img
-                  class="card__heart"
-                  src="./images/heart.svg"
-                  alt="heart"
-                  id="heart1"
-                />
-                <img
-                  id="filledHeart1"
-                  class="card__black"
-                  src="./images/filedHeart.svg"
-                  alt="filled Heart"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <img
+            alt="Yosemite Valley"
             class="card__image"
+          />
+          <div class="card__caption">
+            <h2 class="card__name">Yosemite Valley</h2>
+            <button
+              class="card__like-btn"
+              type="button"
+              aria-label="like button"
+            ></button>
+          </div>
+        </article>
+        <article class="card">
+          <img
             src="./images/lakelouise.jpg"
             alt="Lake Louise"
-          />
-          <div class="card__wrapper">
-            <div class="card__title">
-              Lake Louise
-              <div>
-                <img
-                  class="card__heart"
-                  src="./images/heart.jpg"
-                  id="heart2"
-                  alt="heart"
-                />
-                <img
-                  id="filledHeart2"
-                  class="card__black"
-                  src="./images/filedHeart.svg"
-                  alt="filled heart"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <img
             class="card__image"
+          />
+          <div class="card__caption">
+            <h2 class="card__name">Lake Louise</h2>
+            <button
+              class="card__like-btn"
+              type="button"
+              aria-label="like button"
+            ></button>
+          </div>
+        </article>
+        <article class="card">
+          <img
             src="./images/baldmountains.jpg"
             alt="Bald Mountains"
-          />
-          <div class="card__wrapper">
-            <div class="card__title">
-              Bald Mountains
-              <div>
-                <img
-                  class="card__heart"
-                  id="heart3"
-                  src="./images/heart.svg"
-                  alt="heart"
-                />
-                <img
-                  class="card__black"
-                  id="filledHeart3"
-                  src="./images/filedHeart.svg"
-                  alt="filled heart"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/Latermar.jpg" alt="Latemar" />
-          <div class="card__wrapper">
-            <div class="card__title">
-              Latemar
-              <div>
-                <img
-                  id="heart4"
-                  class="card__heart"
-                  src="./images/heart.svg"
-                  alt="heart"
-                />
-                <img
-                  id="filledHeart4"
-                  class="card__black"
-                  src="./images/filedHeart.svg"
-                  alt="filled heart"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <img
             class="card__image"
+          />
+          <div class="card__caption">
+            <h2 class="card__name">Bald Mountains</h2>
+            <button
+              class="card__like-btn"
+              type="button"
+              aria-label="like button"
+            ></button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="./images/Latermar.jpg" alt="Latemar" class="card__image" />
+          <div class="card__caption">
+            <h2 class="card__name">Latemar</h2>
+            <button
+              class="card__like-btn"
+              type="button"
+              aria-label="like button"
+            ></button>
+          </div>
+        </article>
+        <article class="card">
+          <img
             src="./images/vanoise.jpg"
             alt="Vanoise National Park"
-          />
-          <div class="card__wrapper">
-            <div class="card__title">
-              Vanoise Nationa...
-              <div>
-                <img
-                  id="heart5"
-                  class="card__heart"
-                  src="./images/heart.svg"
-                  alt="heart"
-                />
-                <img
-                  id="filledHeart5"
-                  class="card__black"
-                  src="./images/filedHeart.svg"
-                  alt="filled heart"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <img
             class="card__image"
+          />
+          <div class="card__caption">
+            <h2 class="card__name">Vanoise National Park</h2>
+            <button
+              class="card__like-btn"
+              type="button"
+              aria-label="like button"
+            ></button>
+          </div>
+        </article>
+        <article class="card">
+          <img
             src="./images/lago.jpg"
             alt="Lago di Braies"
+            class="card__image"
           />
-          <div class="card__wrapper">
-            <div class="card__title">
-              Lago di Braies
-              <div>
-                <img
-                  id="heart6"
-                  class="card__heart"
-                  src="./images/heart.jpg"
-                  alt="heart"
-                />
-                <img
-                  id="filledHeart6"
-                  class="card__black"
-                  src="./images/filedHeart.svg"
-                  alt="filled heart"
-                />
-              </div>
-            </div>
+          <div class="card__caption">
+            <h2 class="card__name">Lago di Braies</h2>
+            <button
+              class="card__like-btn"
+              type="button"
+              aria-label="like button"
+            ></button>
           </div>
-        </div>
+        </article>
       </section>
+
+      <div class="popout" id="popoutWindow">
+        <div class="popout__container">
+          <button
+            type="button"
+            aria-label="close"
+            class="popout__close-btn"
+            id="closeProfileButton"
+          ></button>
+          <form action="/" name="profile" class="form" id="form">
+            <fieldset class="form__fieldset">
+              <legend>
+                <h2 class="form__heading">Edit Profile</h2>
+              </legend>
+              <input
+                type="text"
+                name="Full Name"
+                id="userInputfullName"
+                placeholder="Full Name"
+                class="input__text input__text_type_name"
+              />
+              <input
+                type="text"
+                name="Description"
+                id="userInputDescription"
+                placeholder="Description"
+                class="input__text input__text_type_description"
+              />
+              <button
+                type="submit"
+                class="form__submit-btn"
+                id="saveInputProfileButton"
+              >
+                Save
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
 
       <footer class="footer">
         <p class="footer__text">© 2021 Around The U.S.</p>
