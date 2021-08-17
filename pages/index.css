@@ -31,4 +31,4 @@
 @import url(../blocks/form/__fieldset/form__fieldset.css);
 @import url(../blocks/form/__heading/form__heading.css);
 @import url(../blocks/form/__submit-btn/form__submit-btn.css);
-@import url(../blocks/input/__text/input__text.css);
+@import url(../blocks/input/_text/input_text.css);

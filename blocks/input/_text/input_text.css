@@ -1,4 +1,4 @@
-.input__text {
+.input_text {
   padding: 0 0 13px;
   background-color: transparent;
   border: none;
@@ -12,15 +12,15 @@
   margin-bottom: 30px;
 }
 
-.input__text::placeholder {
+.input_text::placeholder {
   color: #000;
   margin-top: 10px;
 }
 
-.input__text:last-of-type {
+.input_text:last-of-type {
   margin-bottom: 48px;
 }
 
-.input__text:focus {
+.input_text:focus {
   border-bottom: 1px solid rgba(48, 48, 48, 0.849);
 }
