@@ -32,3 +32,10 @@
 @import url(../blocks/form/__heading/form__heading.css);
 @import url(../blocks/form/__submit-btn/form__submit-btn.css);
 @import url(../blocks/form/__text/form__text-input.css);
+@import url(../blocks/card/__close/card__close.css);
+@import url(../blocks/card/__like-active/card__like-active.css);
+@import url(../blocks/template/template.css);
+@import url(../blocks/template/__wrapper/template__wrapper.css);
+@import url(../blocks/template/__image/template__image.css);
+@import url(../blocks/template/__close/template__close.css);
+@import url(../blocks/template/__caption/template__caption.css);

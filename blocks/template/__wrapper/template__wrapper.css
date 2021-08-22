@@ -1,0 +1,6 @@
+.template__wrapper {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
