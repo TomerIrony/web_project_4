@@ -96,6 +96,7 @@ function addCard(name, link){
   cardImage = cardElement.querySelector("#cardImage");
   cardImage.src = link
   cardsContainer.prepend(cardElement);
+  cardImage.alt = cardElement.querySelector(".card__name").textContent;
 
   document.querySelector('.card__like-btn').addEventListener('click', function(evt){
     evt.target.classList.toggle("card__like-active")
@@ -107,7 +108,6 @@ function addCard(name, link){
     card.parentElement.removeChild(card);
   })
 
-  
   document.getElementById('cardImage').addEventListener('click', function(evt){
     const imageTemplate = document.querySelector("#openCardTemplate").content;
     const imageElement = imageTemplate.querySelector('.template').cloneNode(true);
@@ -115,6 +115,7 @@ function addCard(name, link){
     const cardImageTitle = evt.target.parentElement.querySelector('.card__name').textContent;
     imageElement.querySelector('.template__image').setAttribute('src', cardImageSrc);
     imageElement.querySelector('.template__caption').textContent = cardImageTitle;
+    imageElement.querySelector('.template__image').alt = imageElement.querySelector('.template__caption').textContent = cardImageTitle;
     templateContainer.append(imageElement);
     document.getElementById('imageClose').addEventListener('click', function(){
       template = document.querySelector('.template');
