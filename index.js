@@ -15,7 +15,7 @@ let cardNameInput = document.getElementById('cardNameInput');
 let imageInput = document.getElementById('imageInput');
 let newPlaceButton = document.getElementById('newPlaceButton');
 let templateImage = document.getElementById('openCardTemplate');
-let templateContainer = document.querySelector('.template__container')
+let templateContainer = document.querySelector('.template-container')
 
 
 
