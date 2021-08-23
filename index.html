@@ -112,9 +112,23 @@
               placeholder="Image URL"
               id="imageInput"
             />
-            <button id="newPlaceButton" class="form__submit-btn">Save</button>
+            <button id="newPlaceButton" type="submit" class="form__submit-btn">
+              Save
+            </button>
           </fieldset>
         </form>
+      </div>
+    </div>
+
+    <div class="popout" id="imageOpened">
+      <div class="popout__images">
+        <button
+          type="button"
+          class="popout__close-btn"
+          id="popoutImageCloseButton"
+        ></button>
+        <img id="popoutImage" class="popout__image" src="empty" alt="empty" />
+        <h2 id="popoutImageCaption" class="popout__caption"></h2>
       </div>
     </div>
 
@@ -136,25 +150,6 @@
           ></button>
         </div>
       </article>
-    </template>
-    <template id="openCardTemplate">
-      <div class="template">
-        <div class="template__wrapper">
-          <button
-            type="button"
-            aria-label="close card"
-            class="template__close"
-            id="imageClose"
-          ></button>
-          <img
-            src="default"
-            id="cardImagePopout"
-            alt="image"
-            class="template__image"
-          />
-          <h2 class="template__caption"></h2>
-        </div>
-      </div>
     </template>
     <div class="template-container"></div>
 

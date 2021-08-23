@@ -39,3 +39,6 @@
 @import url(../blocks/template/__image/template__image.css);
 @import url(../blocks/template/__close/template__close.css);
 @import url(../blocks/template/__caption/template__caption.css);
+@import url(../blocks/popout/__image/popout__image.css);
+@import url(../blocks/popout/__images/popout__images.css);
+@import url(../blocks/popout/__caption/popout__caption.css);
