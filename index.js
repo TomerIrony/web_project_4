@@ -13,19 +13,13 @@ const closeContentWindowButton = document.getElementById('closeButtonNewContent'
 const cardsContainer = document.querySelector('.elements');
 const cardNameInput = document.getElementById('cardNameInput');
 const imageInput = document.getElementById('imageInput');
-const newPlaceButton = document.getElementById('popoutWindowNewPlace');
 const templateImage = document.getElementById('openCardTemplate');
 const templateContainer = document.querySelector('.template-container')
 const popoutImageCross = document.getElementById('popoutImageCloseButton');
 const popoutImage = document.querySelector('#imageOpened')
 
 function closePopout(popout){
-  if(popout.target == popoutImageCross){
-    popoutImage.classList.remove('popout_opened');
-  }
-  else{
   popout.classList.remove('popout_opened');
-  }
 }
 
 function openPopout(popout){
@@ -77,21 +71,20 @@ const initialCards = [
   
 ]; 
 
-const filledHeart = function(evt){
+const handleFilledHeart = function(evt){
   evt.target.classList.toggle("card__like-active");
 }
 
-const imagePopout = function(evt){
+const handleImagePopout = function(evt){
   const cardImageSrc = evt.target.parentElement.querySelector('#cardImage').getAttribute('src');
   const cardImageTitle = evt.target.parentElement.querySelector('.card__name').textContent;
-  popoutImage.classList.add('popout_opened')
+  openPopout(popoutImage)
   document.querySelector('.popout__image').setAttribute('src', cardImageSrc);
   document.querySelector('.popout__caption').textContent = cardImageTitle;
   document.querySelector('.popout__image').alt = document.querySelector('.popout__caption').textContent = cardImageTitle;
-popoutImage.querySelector('#popoutImageCloseButton').addEventListener('click', closePopout)
   }
 
-
+  popoutImage.querySelector('#popoutImageCloseButton').addEventListener('click', () => closePopout(popoutImage))
 
 
 function addCard(name, link){
@@ -102,13 +95,13 @@ function addCard(name, link){
   cardImage.src = link
   cardImage.alt = cardElement.querySelector(".card__name").textContent;
  /* cardsContainer.prepend(cardElement);*/
-  cardElement.querySelector('.card__like-btn').addEventListener('click', filledHeart)
+  cardElement.querySelector('.card__like-btn').addEventListener('click', handleFilledHeart)
   cardElement.querySelector('.card__close').addEventListener('click', function(evt){
     const btn = evt.target;
     const card = btn.parentElement;
     card.parentElement.removeChild(card);
   })
-  cardElement.querySelector('.card__image').addEventListener('click', imagePopout)
+  cardImage.addEventListener('click', handleImagePopout)
   return cardElement;
   }
 
@@ -131,7 +124,7 @@ function inputCard(e){
     closePopout(newContentWindow)  
   }
 
-  newPlaceButton.addEventListener("submit", inputCard)
+  newContentWindow.addEventListener("submit", inputCard)
   
 
 
