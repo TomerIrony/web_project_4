@@ -25,6 +25,13 @@ function closePopout(popout){
 function openPopout(popout){
   popout.classList.add('popout_opened');
   document.addEventListener('keyup', closePopoutEscape)
+  popout.addEventListener('click', closePopoutOverlay)
+}
+
+const closePopoutOverlay = function(evt){
+  if(evt.target === evt.currentTarget) {
+    closePopout(evt.currentTarget);
+    }
 }
 
 const closePopoutEscape = function(evt){
@@ -33,7 +40,6 @@ const closePopoutEscape = function(evt){
     closePopout(openPopout)
   }
 }
-
 
 profileEditButton.addEventListener('click', function(){
   openPopout(profileEditWindow);
