@@ -1,10 +1,10 @@
-const body = document.querySelector('.body');
+const body = document.body
 const profileEditButton = document.getElementById('openProfile');
 const profileEditWindow = document.getElementById('popoutWindow');
 const closeProfileWindowButton = document.getElementById('closeProfileButton');
 const userFullName = document.getElementById('fullName');
 const userDescription = document.getElementById('description');
-const form = document.getElementById('form');
+const form = document.getElementById('editProfileForm');
 const inputName = document.getElementById('userInputfullName');
 const inputDescription = document.getElementById('userInputDescription');
 const newContentButton = document.getElementById('addNewContentButton');
@@ -24,7 +24,16 @@ function closePopout(popout){
 
 function openPopout(popout){
   popout.classList.add('popout_opened');
+  document.addEventListener('keyup', closePopoutEscape)
 }
+
+const closePopoutEscape = function(evt){
+  if(evt.key === "Escape"){
+    const openPopout = document.querySelector('.popout_opened')
+    closePopout(openPopout)
+  }
+}
+
 
 profileEditButton.addEventListener('click', function(){
   openPopout(profileEditWindow);
@@ -36,8 +45,9 @@ closeProfileWindowButton.addEventListener('click', function(){
   closePopout(profileEditWindow)
 })
 
+
 form.addEventListener('submit', function(e){
-  e.preventDefault();   // stop page from refrashing after submiting
+//e.preventDefault();   // stop page from refrashing after submiting
   userFullName.textContent = inputName.value;
   userDescription.textContent = inputDescription.value;
   closePopout(profileEditWindow);
@@ -119,13 +129,14 @@ function addCard(name, link){
   })
 
 function inputCard(e){
-    e.preventDefault();
+ //   e.preventDefault();
     cardsContainer.prepend(addCard(cardNameInput.value, imageInput.value))
     closePopout(newContentWindow)  
   }
 
   newContentWindow.addEventListener("submit", inputCard)
   
+
 
 
 

@@ -54,28 +54,38 @@
           class="popout__close-btn"
           id="closeProfileButton"
         ></button>
-        <form action="/" name="profile" class="form" id="form">
+        <form action="/" name="profile" class="form" id="editProfileForm">
           <fieldset class="form__fieldset">
             <legend>
               <h2 class="form__heading">Edit Profile</h2>
             </legend>
+
             <input
-              class="form__text-input"
+              class="form__text-input form__input"
               type="text"
               name="Full Name"
               id="userInputfullName"
               placeholder="Full Name"
+              minlength="2"
+              maxlength="40"
+              required
             />
+            <span class="form__validation userInputfullName-error"></span>
+
             <input
-              class="form__text-input"
+              class="form__text-input form__input"
               type="text"
               name="Description"
               id="userInputDescription"
               placeholder="Description"
+              minlength="2"
+              maxlength="200"
+              required
             />
+            <span class="form__validation userInputDescription-error"></span>
             <button
               type="submit"
-              class="form__submit-btn"
+              class="form__submit-btn form__submit"
               id="saveInputProfileButton"
             >
               Save
@@ -99,20 +109,29 @@
               <h2 class="form__heading">New Place</h2>
             </legend>
             <input
-              class="form__text-input"
+              class="form__text-input form__input"
               type="text"
               name="Full Name"
               placeholder="title"
               id="cardNameInput"
+              required
             />
+            <span class="form__validation cardNameInput-error"></span>
             <input
-              class="form__text-input"
-              type="text"
+              class="form__text-input form__input"
+              type="url"
               name="Description"
               placeholder="Image URL"
               id="imageInput"
+              required
             />
-            <button id="newPlaceButton" type="submit" class="form__submit-btn">
+            <span class="form__validation imageInput-error"></span>
+
+            <button
+              id="newPlaceButton"
+              type="submit"
+              class="form__submit-btn form__submit"
+            >
               Save
             </button>
           </fieldset>
@@ -154,5 +173,6 @@
     <div class="template-container"></div>
 
     <script src="./index.js"></script>
+    <script src="./validation.js"></script>
   </body>
 </html>
