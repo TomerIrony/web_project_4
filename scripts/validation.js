@@ -30,8 +30,10 @@ const toggleButtonState = (inputList, buttonElement) => {
   console.log(hasInvalidInput(inputList));
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add("form__submit-btn_disable");
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove("form__submit-btn_disable");
+    buttonElement.disabled = false;
   }
 };
 
@@ -59,17 +61,22 @@ function enableValidation(){
 });
 }
 
-
-
-
-
-enableValidation({
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
+export const rules = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__submit-btn",
+  inactiveButtonClass: "form__submit-btn_disable",
+  inputErrorClass: "form__text_error",
   errorClass: "popup__error_visible"
-}); 
+}
 
 
+enableValidation(rules); 
+
+export const defaultButtonDisable = (popout, rules) => {
+  const buttonElement = popout.querySelector(rules.submitButtonSelector);
+  if (buttonElement) {
+      buttonElement.classList.add(rules.inactiveButtonClass);
+      buttonElement.disabled = true;
+  }
+}
