@@ -16,13 +16,13 @@ const cardsContainer = document.querySelector('.elements');
 const cardNameInput = document.getElementById('cardNameInput');
 const imageInput = document.getElementById('imageInput');
 const popoutImage = document.querySelector('#imageOpened');
-const button = document.querySelector('.form__submit-btn');
+
 
 function closePopout(popout) {
 	popout.classList.remove('popout_opened');
 	document.removeEventListener('keyup', closePopoutEscape);
 	popout.removeEventListener('click', closePopoutOverlay);
-  defaultButtonDisable(popout, rules);
+  //defaultButtonDisable(popout, rules);
 }
 
 function openPopout(popout) {
@@ -60,6 +60,7 @@ formEditProfile.addEventListener('submit', function() {
 	userFullName.textContent = inputName.value;
 	userDescription.textContent = inputDescription.value;
 	closePopout(profileEditWindow);
+  defaultButtonDisable(formEditProfile, rules);
 });
 
 const initialCards = [{
@@ -137,4 +138,7 @@ function inputCard() {
 	closePopout(newContentWindow);
 }
 
-newContentWindow.addEventListener("submit", inputCard);
+newContentWindow.addEventListener("submit", function(){
+  inputCard()
+  defaultButtonDisable(newContentWindow, rules);
+});

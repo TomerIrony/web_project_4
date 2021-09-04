@@ -1,13 +1,13 @@
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add("form__text_error");
+  inputElement.classList.add(rules.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add("form__validation_show");
 };
 
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove("form__text_error");
+  inputElement.classList.remove(rules.inputErrorClass);
   errorElement.classList.remove("form__validation_show-error_active");
   errorElement.textContent = "";
 };
@@ -29,17 +29,17 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement) => {
   console.log(hasInvalidInput(inputList));
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add("form__submit-btn_disable");
+    buttonElement.classList.add(rules.inactiveButtonClass);
     buttonElement.disabled = true;
   } else {
-    buttonElement.classList.remove("form__submit-btn_disable");
+    buttonElement.classList.remove(rules.inactiveButtonClass);
     buttonElement.disabled = false;
   }
 };
 
 const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
-  const buttonElement = formElement.querySelector(".form__submit-btn");
+  const inputList = Array.from(formElement.querySelectorAll(rules.inputSelector));
+  const buttonElement = formElement.querySelector(rules.submitButtonSelector);
   toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
@@ -51,7 +51,7 @@ const setEventListeners = (formElement) => {
 
 
 function enableValidation(){
-  const formList = Array.from(document.querySelectorAll(".form"));
+  const formList = Array.from(document.querySelectorAll(rules.formSelector));
   formList.forEach((formElement) => {
   formElement.addEventListener("submit", (evt) => {
     evt.preventDefault();
@@ -75,8 +75,8 @@ enableValidation(rules);
 
 export const defaultButtonDisable = (popout, rules) => {
   const buttonElement = popout.querySelector(rules.submitButtonSelector);
-  if (buttonElement) {
-      buttonElement.classList.add(rules.inactiveButtonClass);
-      buttonElement.disabled = true;
+  if (toggleButtonState) {
+     buttonElement.classList.add(rules.inactiveButtonClass);
+     buttonElement.disabled = true;
   }
 }
