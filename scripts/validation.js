@@ -2,20 +2,21 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(rules.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__validation_show");
+  errorElement.classList.add(rules.formValidationShow);
 };
 
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(rules.inputErrorClass);
-  errorElement.classList.remove("form__validation_show-error_active");
+  errorElement.classList.remove(rules.formValidationActive);
   errorElement.textContent = "";
 };
 
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
+  } 
+  else {
     hideInputError(formElement, inputElement);
   }
 };
@@ -26,14 +27,19 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
+export const defaultButtonDisable = (popout, rules) => {
+  const buttonElement = popout.querySelector(rules.submitButtonSelector);
+  buttonElement.classList.add(rules.inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
 const toggleButtonState = (inputList, buttonElement) => {
-  console.log(hasInvalidInput(inputList));
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(rules.inactiveButtonClass);
-    buttonElement.disabled = true;
+    buttonElement.classList.add(rules.inactiveButtonClass); 
+    buttonElement.disabled = true; 
   } else {
-    buttonElement.classList.remove(rules.inactiveButtonClass);
-    buttonElement.disabled = false;
+    buttonElement.classList.remove(rules.inactiveButtonClass); 
+    buttonElement.disabled = false; 
   }
 };
 
@@ -59,7 +65,7 @@ function enableValidation(){
 
     setEventListeners(formElement);
 });
-}
+};
 
 export const rules = {
   formSelector: ".form",
@@ -67,16 +73,11 @@ export const rules = {
   submitButtonSelector: ".form__submit-btn",
   inactiveButtonClass: "form__submit-btn_disable",
   inputErrorClass: "form__text_error",
-  errorClass: "popup__error_visible"
-}
-
+  errorClass: "popup__error_visible",
+  formValidationShow: "form__validation_show",
+  formValidationActive: "form__validation_show"
+};
 
 enableValidation(rules); 
 
-export const defaultButtonDisable = (popout, rules) => {
-  const buttonElement = popout.querySelector(rules.submitButtonSelector);
-  if (toggleButtonState) {
-     buttonElement.classList.add(rules.inactiveButtonClass);
-     buttonElement.disabled = true;
-  }
-}
+
