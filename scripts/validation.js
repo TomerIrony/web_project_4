@@ -32,7 +32,7 @@ export const defaultButtonDisable = (buttonElement, rules) => {
   buttonElement.disabled = true;
 }
 
-export const defaultButtonEnable = (buttonElement, rules) => {
+const defaultButtonEnable = (buttonElement, rules) => {
   buttonElement.classList.remove(rules.inactiveButtonClass); 
   buttonElement.disabled = false; 
 }
