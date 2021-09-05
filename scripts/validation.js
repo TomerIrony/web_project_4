@@ -27,19 +27,21 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-export const defaultButtonDisable = (popout, rules) => {
-  const buttonElement = popout.querySelector(rules.submitButtonSelector);
+export const defaultButtonDisable = (buttonElement, rules) => {
   buttonElement.classList.add(rules.inactiveButtonClass);
   buttonElement.disabled = true;
 }
 
+export const defaultButtonEnable = (buttonElement, rules) => {
+  buttonElement.classList.remove(rules.inactiveButtonClass); 
+  buttonElement.disabled = false; 
+}
+
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(rules.inactiveButtonClass); 
-    buttonElement.disabled = true; 
+    defaultButtonDisable(buttonElement, rules);
   } else {
-    buttonElement.classList.remove(rules.inactiveButtonClass); 
-    buttonElement.disabled = false; 
+    defaultButtonEnable(buttonElement, rules);
   }
 };
 
