@@ -27,6 +27,7 @@ function closePopup(popup) {
 	popup.classList.remove('popout_opened');
 	document.removeEventListener('keyup', closePopupEscape);
 	popup.removeEventListener('click', closePopupOverlay);
+	
 }
 
 export function openPopup(popup) {
@@ -64,7 +65,7 @@ formEditProfile.addEventListener('submit', function() {
 	userFullName.textContent = inputName.value;
 	userDescription.textContent = inputDescription.value;
 	closePopup(profileEditWindow);
-  defaultButtonDisable(saveInputProfileButton, validationConfig);
+  validatorAddCard._defaultButtonDisable(saveInputProfileButton, validationConfig);
 });
 
 validatorEditProfile.enableValidation()
@@ -124,5 +125,5 @@ function submitAddCardForm() {
 
 newContentWindow.addEventListener("submit", function(){
   submitAddCardForm()
-  defaultButtonDisable(saveNewImage, validationConfig);
+  validatorAddCard._defaultButtonDisable(saveNewImage, validationConfig);
 });
