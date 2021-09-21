@@ -1,20 +1,20 @@
 export class FormValidation{
-  constructor(rules, formElement){
-    this._rules = rules;
+  constructor(validationConfig, formElement){
+    this._validationConfig = validationConfig;
     this._formElement = formElement;
   }
   
   _showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add(rules.inputErrorClass);
+    inputElement.classList.add(validationConfig.inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add(rules.formValidationShow);
+    errorElement.classList.add(validationConfig.formValidationShow);
   }
 
   _hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove(rules.inputErrorClass);
-    errorElement.classList.remove(rules.formValidationActive);
+    inputElement.classList.remove(validationConfig.inputErrorClass);
+    errorElement.classList.remove(validationConfig.formValidationActive);
     errorElement.textContent = "";
   };
 
@@ -33,27 +33,27 @@ export class FormValidation{
     });
   };
 
-  _defaultButtonDisable = (buttonElement, rules) => {
-    buttonElement.classList.add(rules.inactiveButtonClass);
+  _defaultButtonDisable = (buttonElement, validationConfig) => {
+    buttonElement.classList.add(validationConfig.inactiveButtonClass);
     buttonElement.disabled = true
   };
 
-  _defaultButtonEnable = (buttonElement, rules) => {
-    buttonElement.classList.remove(rules.inactiveButtonClass); 
+  _defaultButtonEnable = (buttonElement, validationConfig) => {
+    buttonElement.classList.remove(validationConfig.inactiveButtonClass); 
     buttonElement.disabled = false; 
   };
 
   _toggleButtonState = (inputList, buttonElement) => {
     if (this._hasInvalidInput(inputList)) {
-      this._defaultButtonDisable(buttonElement, rules);
+      this._defaultButtonDisable(buttonElement, validationConfig);
     } else {
-      this._defaultButtonEnable(buttonElement, rules);
+      this._defaultButtonEnable(buttonElement, validationConfig);
     }
   };
 
   _setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll(rules.inputSelector));
-    const buttonElement = formElement.querySelector(rules.submitButtonSelector);
+    const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
+    const buttonElement = formElement.querySelector(validationConfig.submitButtonSelector);
     this._toggleButtonState(inputList, buttonElement);
     inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
@@ -64,7 +64,7 @@ export class FormValidation{
   };
 
   enableValidation(){
-    const formList = Array.from(document.querySelectorAll(rules.formSelector));
+    const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
     formList.forEach((formElement) => {
     formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
@@ -77,7 +77,7 @@ export class FormValidation{
 
 
 
-export const rules = {
+export const validationConfig = {
   formSelector: ".form",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__submit-btn",
