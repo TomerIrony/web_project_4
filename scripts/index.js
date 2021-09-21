@@ -1,5 +1,5 @@
-import {defaultButtonDisable} from "./validation.js";
-import {rules} from "./validation.js"
+import {rules, FormValidation} from "./validation.js"
+import Card from "./cards.js"
 
 const profileEditButton = document.getElementById('openProfile');
 const profileEditWindow = document.getElementById('popoutWindow');
@@ -25,6 +25,10 @@ function closePopout(popout) {
 	popout.removeEventListener('click', closePopoutOverlay);
   //defaultButtonDisable(popout, rules);
 }
+
+const userProfile = new FormValidation(rules ,formEditProfile)
+const imageProfile = new FormValidation(rules ,newContentWindow)
+userProfile.enableValidation()
 
 function openPopout(popout) {
 	popout.classList.add('popout_opened');
@@ -86,11 +90,17 @@ const initialCards = [{
 
 ];
 
-const handleFilledHeart = function(evt) {
+export const closeImage = function(evt) {
+	const btn = evt.target;
+	const card = btn.parentElement;
+	card.parentElement.removeChild(card);
+};
+
+export const handleFilledHeart = function(evt) {
 	evt.target.classList.toggle("card__like-active");
 };
 
-const handleImagePopout = function(evt) {
+export const handleImagePopout = function(evt) {
 	const cardImageSrc = evt.target.parentElement.querySelector('#cardImage').getAttribute('src');
 	const cardImageTitle = evt.target.parentElement.querySelector('.card__name').textContent;
 	openPopout(popoutImage);
@@ -101,28 +111,11 @@ const handleImagePopout = function(evt) {
 
 popoutImage.querySelector('#popoutImageCloseButton').addEventListener('click', () => closePopout(popoutImage));
 
-
-function addCard(name, link) {
-	const cardTemplate = document.querySelector("#card-template").content;
-	const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-	cardElement.querySelector(".card__name").textContent = name;
-	const cardImage = cardElement.querySelector("#cardImage");
-	cardImage.src = link;
-	cardImage.alt = cardElement.querySelector(".card__name").textContent;
-	/* cardsContainer.prepend(cardElement);*/
-	cardElement.querySelector('.card__like-btn').addEventListener('click', handleFilledHeart);
-	cardElement.querySelector('.card__close').addEventListener('click', function(evt) {
-		const btn = evt.target;
-		const card = btn.parentElement;
-		card.parentElement.removeChild(card);
-	});
-	cardImage.addEventListener('click', handleImagePopout);
-	return cardElement;
-}
-
-initialCards.forEach(function(card) {
-	cardsContainer.prepend(addCard(card.name, card.link));
-});
+initialCards.forEach(item => {
+	const card = new Card(item, "#card-template");
+	const cardElement = card.generateCard();
+	cardsContainer.prepend(cardElement);
+})
 
 newContentButton.addEventListener('click', function() {
 	openPopout(newContentWindow);
@@ -134,8 +127,11 @@ closeContentWindowButton.addEventListener('click', function() {
 });
 
 function inputCard() {
-	//   e.preventDefault();
-	cardsContainer.prepend(addCard(cardNameInput.value, imageInput.value));
+	const inputObj = {name: cardNameInput.value,
+	link: imageInput.value};
+	const newObj = new Card(inputObj, "#card-template");
+	const cardElement = newObj.generateCard();
+	cardsContainer.prepend(cardElement);
 	closePopout(newContentWindow);
 }
 
