@@ -99,7 +99,7 @@ popupImageContainer.querySelector('#popoutImageCloseButton').addEventListener('c
 	initialCards.forEach(item => {
 		const card = new Card(item, "#card-template");
 		const cardElement = card.generateCard();
-		/* cardsContainer.prepend(cardElement);  */
+		cardsContainer.prepend(cardElement);
 		return cardElement
 	})
 
