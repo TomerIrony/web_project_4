@@ -18,6 +18,8 @@ const imageInput = document.getElementById('imageInput');
 const popoutImage = document.querySelector('#imageOpened');
 const saveNewImage = document.getElementById('newPlaceButton');
 const saveInputProfileButton = document.getElementById('saveInputProfileButton');
+const userProfile = new FormValidation(rules ,formEditProfile)
+const imageProfile = new FormValidation(rules ,newContentWindow)
 
 function closePopout(popout) {
 	popout.classList.remove('popout_opened');
@@ -25,10 +27,6 @@ function closePopout(popout) {
 	popout.removeEventListener('click', closePopoutOverlay);
   //defaultButtonDisable(popout, rules);
 }
-
-const userProfile = new FormValidation(rules ,formEditProfile)
-const imageProfile = new FormValidation(rules ,newContentWindow)
-userProfile.enableValidation()
 
 function openPopout(popout) {
 	popout.classList.add('popout_opened');
@@ -67,6 +65,9 @@ formEditProfile.addEventListener('submit', function() {
 	closePopout(profileEditWindow);
   defaultButtonDisable(saveInputProfileButton, rules);
 });
+
+userProfile.enableValidation()
+imageProfile.enableValidation()
 
 const initialCards = [{
 		name: "Yosemite Valley",

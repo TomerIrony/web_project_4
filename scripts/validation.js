@@ -1,4 +1,4 @@
-class FormValidation{
+export class FormValidation{
   constructor(rules, formElement){
     this._rules = rules;
     this._formElement = formElement;
@@ -77,7 +77,7 @@ class FormValidation{
 
 
 
-const rules = {
+export const rules = {
   formSelector: ".form",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__submit-btn",
@@ -88,6 +88,6 @@ const rules = {
   formValidationActive: "form__validation_show"
 };
 
-export {rules, FormValidation};
+
 
 
