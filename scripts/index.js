@@ -100,10 +100,13 @@ popupImageContainer.querySelector('#popoutImageCloseButton').addEventListener('c
 	initialCards.forEach(item => {
 		const card = new Card(item, "#card-template");
 		const cardElement = card.generateCard();
-		cardsContainer.prepend(cardElement);
+		createCard(cardElement);
 		return cardElement
 	})
 
+	function createCard(cardElement){
+		cardsContainer.prepend(cardElement);
+	}
 
 newContentButton.addEventListener('click', function() {
 	openPopup(newContentWindow);
@@ -119,7 +122,7 @@ function submitAddCardForm() {
 	link: imageInput.value};
 	const newObj = new Card(inputObj, "#card-template");
 	const cardElement = newObj.generateCard();
-	cardsContainer.prepend(cardElement);
+	createCard(cardElement);
 	closePopup(newContentWindow);
 }
 
