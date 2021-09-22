@@ -1,5 +1,5 @@
-import {validationConfig, FormValidation} from "./validation.js"
-import Card from "./cards.js"
+import {validationConfig, FormValidation} from "./FormValidator.js"
+import Card from "./Card.js"
 
 const profileEditButton = document.getElementById('openProfile');
 const profileEditWindow = document.getElementById('popoutWindow');
