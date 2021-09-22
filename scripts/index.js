@@ -1,6 +1,6 @@
 import {validationConfig, FormValidation} from "./FormValidator.js"
 import Card from "./Card.js"
-import {popupImageContainer, openPopup} from "./utils.js"
+import {popupImageContainer, openPopup, closePopup} from "./utils.js"
 
 const profileEditButton = document.getElementById('openProfile');
 const profileEditWindow = document.getElementById('popoutWindow');
@@ -22,6 +22,7 @@ const validatorEditProfile = new FormValidation(validationConfig ,formEditProfil
 const validatorAddCard = new FormValidation(validationConfig ,newContentWindow)
 
 
+
 profileEditButton.addEventListener('click', function() {
 	openPopup(profileEditWindow);
 	inputName.value = userFullName.textContent;
@@ -34,6 +35,7 @@ closeProfileWindowButton.addEventListener('click', function() {
 
 
 formEditProfile.addEventListener('submit', function() {
+	//e.preventDefault();   // stop page from refrashing after submiting
 	userFullName.textContent = inputName.value;
 	userDescription.textContent = inputDescription.value;
 	closePopup(profileEditWindow);

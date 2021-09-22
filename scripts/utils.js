@@ -12,7 +12,7 @@ export const openImagePopup = function(evt) {
 	popupImage.alt = document.querySelector('.popout__caption').textContent = cardImageTitle;
 };
 
-function closePopup(popup) {
+export const closePopup = function(popup) {
 	popup.classList.remove('popout_opened');
 	document.removeEventListener('keyup', closePopupEscape);
 	popup.removeEventListener('click', closePopupOverlay);
