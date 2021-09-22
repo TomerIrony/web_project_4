@@ -1,5 +1,6 @@
 import {validationConfig, FormValidation} from "./FormValidator.js"
 import Card from "./Card.js"
+import {popupImageContainer, openPopup} from "./utils.js"
 
 const profileEditButton = document.getElementById('openProfile');
 const profileEditWindow = document.getElementById('popoutWindow');
@@ -15,39 +16,11 @@ const closeContentWindowButton = document.getElementById('closeButtonNewContent'
 const cardsContainer = document.querySelector('.elements');
 const cardNameInput = document.getElementById('cardNameInput');
 const imageInput = document.getElementById('imageInput');
-export const popupImageContainer = document.querySelector('#imageOpened');
-export const popupImageCaption = document.querySelector('.popout__caption');
-export const popupImage = document.querySelector('.popout__image');
 const saveNewImage = document.getElementById('newPlaceButton');
 const saveInputProfileButton = document.getElementById('saveInputProfileButton');
 const validatorEditProfile = new FormValidation(validationConfig ,formEditProfile)
 const validatorAddCard = new FormValidation(validationConfig ,newContentWindow)
 
-function closePopup(popup) {
-	popup.classList.remove('popout_opened');
-	document.removeEventListener('keyup', closePopupEscape);
-	popup.removeEventListener('click', closePopupOverlay);
-	
-}
-
-export function openPopup(popup) {
-	popup.classList.add('popout_opened');
-	document.addEventListener('keyup', closePopupEscape);
-	popup.addEventListener('click', closePopupOverlay);
-}
-
-const closePopupOverlay = function(evt) {
-	if (evt.target === evt.currentTarget) {
-		closePopup(evt.currentTarget);
-	}
-};
-
-const closePopupEscape = function(evt) {
-	if (evt.key === "Escape") {
-		const openPopup = document.querySelector('.popout_opened');
-		closePopup(openPopup);
-	}
-};
 
 profileEditButton.addEventListener('click', function() {
 	openPopup(profileEditWindow);
@@ -61,7 +34,6 @@ closeProfileWindowButton.addEventListener('click', function() {
 
 
 formEditProfile.addEventListener('submit', function() {
-	//e.preventDefault();   // stop page from refrashing after submiting
 	userFullName.textContent = inputName.value;
 	userDescription.textContent = inputDescription.value;
 	closePopup(profileEditWindow);
@@ -94,8 +66,6 @@ const initialCards = [{
 ];
 
 popupImageContainer.querySelector('#popoutImageCloseButton').addEventListener('click', () => closePopup(popupImageContainer));
-
-
 
 	initialCards.forEach(item => {
 		const card = new Card(item, "#card-template");
