@@ -21,8 +21,6 @@ const saveInputProfileButton = document.getElementById('saveInputProfileButton')
 const validatorEditProfile = new FormValidation(validationConfig ,formEditProfile)
 const validatorAddCard = new FormValidation(validationConfig ,newContentWindow)
 
-
-
 profileEditButton.addEventListener('click', function() {
 	openPopup(profileEditWindow);
 	inputName.value = userFullName.textContent;
