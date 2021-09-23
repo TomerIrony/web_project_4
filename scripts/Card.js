@@ -15,14 +15,12 @@ export default class Card{
 		return cardElement;
 	}
 
-	_toggleLike(evt){
-		evt.target.classList.toggle("card__like-active");
+	_toggleLike = () =>{
+		this._element.querySelector(".card__like-btn").classList.toggle("card__like-active");
 	}
 
-	_deleteCard = function(evt) { 
-		const btn = evt.target; 
-		const card = btn.parentElement; 
-		card.parentElement.removeChild(card); 
+	_deleteCard = () => { 
+		this._element.remove()
 	}; 
 	
 	generateCard(){
