@@ -1,3 +1,21 @@
+import "./styles/index.css"; // add import of the main stylesheets file 
+import logo from "./styles/images/logo.svg";
+import profileImageSrc from "./styles/images/profileimage.jpg"
+import penSrc from "./styles/images/pen.svg"
+import plusSignSrc from "./styles/images/plussign.svg"
+
+const logoImage = document.getElementById('logo');
+logoImage.src = logo;
+
+const profileimage = document.getElementById('profileImage');
+profileimage.src = profileImageSrc;
+
+const pen = document.getElementById('pen');
+pen.src = penSrc;
+
+const plusSign = document.getElementById('plusSign');
+plusSign.src = plusSignSrc;
+
 import {validationConfig, FormValidation} from "./FormValidator.js";
 import Card from "./Card.js";
 import Section from "./Section.js";
@@ -26,8 +44,9 @@ const imageClickedPopup = new PopupWithImage(popupImageContainer);
 const validatorEditProfile = new FormValidation(validationConfig ,formEditProfile)
 const validatorAddCard = new FormValidation(validationConfig ,newContentWindow)
 const inputUserInfo = new UserInfo(userFullName, userDescription)
-const profileEditPopup = new Popup(editProfileWindow);	
-																														// Profile Edit Popup
+
+
+const profileEditPopup = new Popup(editProfileWindow);			// Profile Edit Popup
 profileEditButton.addEventListener('click', function(){			//
 	const userNameInfo = inputUserInfo.getUserInfo().userName	//
 	const userJobInfo = inputUserInfo.getUserInfo().userJob		//																			
