@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="./pages/index.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,33 +9,25 @@
   <body class="root">
     <header class="header">
       <div class="header__wrapper">
-        <img class="header__title" src="./images/logo.svg" alt="logo" />
+        <img class="header__title" id="logo" alt="logo" />
       </div>
     </header>
     <main>
       <section class="profile">
         <div class="profile__container">
-          <img
-            class="profile__image"
-            src="./images/profileimage.jpg"
-            alt="profile image"
-          />
+          <img class="profile__image" id="profileImage" alt="profile image" />
           <div class="profile__text">
             <div class="profile__title">
               <h1 class="profile__username" id="fullName">Jacques Cousteau</h1>
               <button type="button" id="openProfile" class="profile__edit">
-                <img class="profile__pen" src="./images/pen.svg" alt="pen" />
+                <img class="profile__pen" id="pen" alt="pen" />
               </button>
             </div>
             <p class="profile__subtitle" id="description">Explorer</p>
           </div>
         </div>
         <button type="button" class="profile__button" id="addNewContentButton">
-          <img
-            class="profile__plus"
-            src="./images/plussign.svg"
-            alt="plus sign"
-          />
+          <img class="profile__plus" id="plusSign" alt="plus sign" />
         </button>
       </section>
 
@@ -176,9 +167,5 @@
       </article>
     </template>
     <div class="template-container"></div>
-
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/utils.js"></script>
   </body>
 </html>
