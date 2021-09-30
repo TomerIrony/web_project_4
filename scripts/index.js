@@ -1,86 +1,102 @@
-import {validationConfig, FormValidation} from "./FormValidator.js";
+import { validationConfig, FormValidation } from "./FormValidator.js";
 import Card from "./Card.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import UserInfo from "./UserInfo.js";
 import PopupWithForm from "./PopupWithForm.js";
-import {profileEditButton,
-	userFullName,
-	userDescription,
-	formEditProfile,
-	inputName,
-	inputDescription,
-	newContentButton,
-	newContentWindow,
-	cardsContainer,
-	popupImageContainer,
-	cardNameInput,
-	initialCards,
-	imageInput,
-	cardTemplate,
-	editProfileWindow
-} from "./utils.js"
+import {
+  profileEditButton,
+  userFullName,
+  userDescription,
+  formEditProfile,
+  inputName,
+  inputDescription,
+  newContentButton,
+  newContentWindow,
+  cardsContainer,
+  popupImageContainer,
+  cardNameInput,
+  initialCards,
+  imageInput,
+  cardTemplate,
+  editProfileWindow,
+} from "./utils.js";
 
-const imageClickedPopup = new PopupWithImage(popupImageContainer);
-const validatorEditProfile = new FormValidation(validationConfig ,formEditProfile)
-const validatorAddCard = new FormValidation(validationConfig ,newContentWindow)
-const inputUserInfo = new UserInfo(userFullName, userDescription)
-const profileEditPopup = new Popup(editProfileWindow);	
-																														// Profile Edit Popup
-profileEditButton.addEventListener('click', function(){			//
-	const userNameInfo = inputUserInfo.getUserInfo().userName	//
-	const userJobInfo = inputUserInfo.getUserInfo().userJob		//																			
-	inputName.value = userNameInfo;														//
-	inputDescription.value = userJobInfo;											//															
-	profileEditPopup.open()																		//
-	editProfileForm.open()																		//
-})																													//
+const imagePopup = new PopupWithImage(popupImageContainer);
+const validatorEditProfile = new FormValidation(
+  validationConfig,
+  formEditProfile
+);
+const validatorAddCard = new FormValidation(validationConfig, newContentWindow);
+const userInfo = new UserInfo(userFullName, userDescription);
 
+profileEditButton.addEventListener("click", function () {
+  //	Profile Edit Popup
+  const userNameInfo = userInfo.getUserInfo().userName; //
+  const userJobInfo = userInfo.getUserInfo().userJob; //
+  inputName.value = userNameInfo; //
+  inputDescription.value = userJobInfo; //
+  editProfileForm.open(); //
+}); //
 
-const editProfileForm = new PopupWithForm										// Profile Edit Form
-(editProfileWindow,																					//
-	{formCallBack: () => {																		//
-		inputUserInfo.setUserInfo																//
-		(inputName.value, inputDescription.value)								//
-		editProfileForm.close()																	//
-	}																													//
-})																													//
+const editProfileForm = new PopupWithForm( // Profile Edit Form
+  editProfileWindow, //
+  {
+    formCallBack: (data) => {
+      //
+      userInfo.setUserInfo(
+        //
+        inputName.value,
+        inputDescription.value
+      ); //
+      editProfileForm.close(); //
+    }, //
+  }
+); //
 
-const cardCreate = (data) => {															// Card create data
-	const cardCreated = new Card(data, cardTemplate, {				//
-		handleCardClick: (evt) =>																//
-		imageClickedPopup.open(evt)															//
-	})																												//
-	return cardCreated;																				//
-}
+const cardCreate = (data) => {
+  // Card create data
+  const cardCreated = new Card(data, cardTemplate, {
+    //
+    handleCardClick: (
+      evt //
+    ) => imagePopup.open(evt), //
+  }); //
+  return cardCreated; //
+};
 
-validatorEditProfile.enableValidation()
-validatorAddCard.enableValidation()
+validatorEditProfile.enableValidation();
+validatorAddCard.enableValidation();
 
-const newContentPopup = new Popup(newContentWindow)  				// New Content Popup
-newContentButton.addEventListener('click', function() {			//
-	newContentPopup.open();																		//
-	newContentForm.open();																		//											
-	cardNameInput.value = '';																	//
-	imageInput.value = '';																		//
-});																													//
+newContentButton.addEventListener("click", function () {
+  // New Content Popup
+  newCardPopup.open(); //
+  cardNameInput.value = ""; //
+  imageInput.value = ""; //
+}); //
 
-const newContentForm = new PopupWithForm										// New Content Form
-(newContentWindow, {																				//
-	formCallBack: (data) => {																	//
-		initalCardsList.addItem(cardCreate(data)								//
-		.generateCard())																				//
-		newContentForm.close()																	//
-	}																													//
-});																													//
+const newCardPopup = new PopupWithForm(newContentWindow, {
+  // New Content Form
+  //
+  formCallBack: (data) => {
+    //
+    initalCardsList.addItem(
+      cardCreate(data) //
+        .generateCard()
+    ); //
+    newCardPopup.close(); //
+  }, //
+}); //
 
-const initalCardsList = new Section({items: initialCards,    // inital cards push
-	renderer:(data) =>{																				 //
-		initalCardsList.addItem(cardCreate(data).generateCard()) //
-	},																												 //
-},																												   //
-cardsContainer)																						 	 //																														//
-initalCardsList.renderer();																 	 //
-
-
+const initalCardsList = new Section(
+  {
+    items: initialCards, // inital cards push
+    renderer: (data) => {
+      //
+      initalCardsList.addItem(cardCreate(data).generateCard()); //
+    }, //
+  }, //
+  cardsContainer
+); //																														//
+initalCardsList.renderer(); //

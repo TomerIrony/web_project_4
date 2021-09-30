@@ -1,13 +1,13 @@
 export default class UserInfo {
-  constructor(userName, userJob){
+  constructor(userName, userJob) {
     this._userName = userName;
     this._userJob = userJob;
   }
 
-  getUserInfo(){
+  getUserInfo() {
     const userName = this._userName.textContent;
     const userJob = this._userJob.textContent;
-    const userInfo = {userName, userJob};
+    const userInfo = { userName, userJob };
     return userInfo;
   }
 
