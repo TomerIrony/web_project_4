@@ -41,3 +41,7 @@
 @import url(../blocks/form/__validation/_show/form__validation_show.css);
 @import url(../blocks/form/__text/_error/form__text_error.css);
 @import url(../blocks/form/__submit-btn/_disable/form__submit-btn_disable.css);
+@import url(../blocks/card/__like-numbers/card__like-numbers.css);
+@import url(../blocks/card/__group/card__group.css);
+@import url(../blocks/profile/__image-pen/__image-pen.css);
+@import url(../blocks/profile/__image-container/profile__image-container.css);

@@ -9,6 +9,12 @@ export default class Section {
     this._container.innerHTML = "";
   }
 
+  /*   renderer(items) {
+    items.forEach((item) => {
+      this._renderer(item);
+    });
+  } */
+
   renderer() {
     this.clear();
     this._renderedItems.forEach((item) => {
@@ -17,6 +23,6 @@ export default class Section {
   }
 
   addItem(element) {
-    this._container.prepend(element);
+    this._container.append(element);
   }
 }

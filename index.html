@@ -16,14 +16,22 @@
     <main>
       <section class="profile">
         <div class="profile__container">
-          <img
-            class="profile__image"
-            src="./images/profileimage.jpg"
-            alt="profile image"
-          />
+          <div class="profile__image-container">
+            <img
+              class="profile__image"
+              src="./images/profileimage.jpg"
+              alt="profile image"
+            />
+            <img
+              src="./images/pen.svg"
+              alt="editImagePen"
+              class="profile__image-pen"
+              id="imagePen"
+            />
+          </div>
           <div class="profile__text">
             <div class="profile__title">
-              <h1 class="profile__username" id="fullName">Jacques Cousteau</h1>
+              <h1 class="profile__username" id="fullName">Jac Cousteau</h1>
               <button type="button" id="openProfile" class="profile__edit">
                 <img class="profile__pen" src="./images/pen.svg" alt="pen" />
               </button>
@@ -89,6 +97,65 @@
               id="saveInputProfileButton"
             >
               Save
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <div class="popout" id="imageUpdatePopup">
+      <div class="popout__container">
+        <button
+          type="button"
+          aria-label="close"
+          class="popout__close-btn"
+          id="closeButtonNewContent"
+        ></button>
+        <form action="/" name="editImage" id="editImageForm" class="form">
+          <fieldset class="form__fieldset">
+            <legend>
+              <h2 class="form__heading">Change profile picture</h2>
+            </legend>
+            <input
+              class="form__text-input form__input"
+              type="url"
+              name="Profile Image Url"
+              placeholder="Image URL"
+              id="profileImageInput"
+              required
+            />
+            <span class="form__validation profileImageInput-error"></span>
+            <button
+              id="profileImageSaveButton"
+              type="submit"
+              class="form__submit-btn form__submit"
+            >
+              Save
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <div class="popout" id="deleteImagePopup">
+      <div class="popout__container">
+        <button
+          type="button"
+          aria-label="close"
+          class="popout__close-btn"
+          id="closeDeleteForm"
+        ></button>
+        <form action="/" name="delete image" id="deleteImageForm" class="form">
+          <fieldset class="form__fieldset">
+            <legend>
+              <h2>Are you sure?</h2>
+            </legend>
+            <button
+              id="deleteCardButton"
+              type="submit"
+              class="form__submit-btn form__submit"
+            >
+              Yes
             </button>
           </fieldset>
         </form>
@@ -167,11 +234,14 @@
         <img id="cardImage" src="default" alt="." class="card__image" />
         <div class="card__caption">
           <h2 class="card__name"></h2>
-          <button
-            class="card__like-btn"
-            type="button"
-            aria-label="like button"
-          ></button>
+          <div class="card__group">
+            <button
+              class="card__like-btn"
+              type="button"
+              aria-label="like button"
+            ></button>
+            <p class="card__like-numbers"></p>
+          </div>
         </div>
       </article>
     </template>
