@@ -5,6 +5,7 @@ import Section from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
 import UserInfo from "./UserInfo.js";
 import PopupWithForm from "./PopupWithForm.js";
+import load from "./load.js";
 import {
   profileEditButton,
   userFullName,
@@ -44,6 +45,7 @@ profileEditButton.addEventListener("click", function () {
   const userJobInfo = userInfo.getUserInfo().userJob;
   inputName.value = userNameInfo;
   inputDescription.value = userJobInfo;
+  editProfileWindow.querySelector(".form__submit-btn").textContent = "Save";
   editProfileForm.open();
 });
 
@@ -51,9 +53,12 @@ const editProfileForm = new PopupWithForm({
   popupSelector: editProfileWindow,
   formCallBack: (data) => {
     api.updateUserInfo();
-    api.loadUserInfo().then((data) => {
-      userInfo.setUserInfo(data.name, data.about, data.avatar);
-    });
+    api
+      .loadUserInfo()
+      .then((data) => {
+        userInfo.setUserInfo(data.name, data.about, data.avatar);
+      })
+      .then(load(editProfileWindow, true));
     editProfileForm.close();
   },
 });
@@ -73,6 +78,7 @@ document
     document.querySelector(".profile__image-pen").style.visibility = "visible";
   });
 document.querySelector(".profile__image-pen").addEventListener("click", () => {
+  editImagePopup.querySelector(".form__submit-btn").textContent = "Save";
   editImageForm.open();
 });
 
@@ -80,7 +86,10 @@ const editImageForm = new PopupWithForm({
   popupSelector: editImagePopup,
   formCallBack: () => {
     profileImage.setAttribute("src", imageUrlInput.value);
-    api.updateProfilePicture(imageUrlInput.value).then(editImageForm.close());
+    api
+      .updateProfilePicture(imageUrlInput.value)
+      .then(load(editImagePopup, true))
+      .then(editImageForm.close());
   },
 });
 
@@ -104,8 +113,10 @@ newContentButton.addEventListener("click", function () {
 const newCardPopup = new PopupWithForm({
   popupSelector: newContentWindow,
   formCallBack: () => {
-    api.addNewCard(cardNameInput.value, imageInput.value).then(createCards);
-    newCardPopup.close();
+    api
+      .addNewCard(cardNameInput.value, imageInput.value)
+      .then(createCards)
+      .then(newCardPopup.close());
   },
 });
 
