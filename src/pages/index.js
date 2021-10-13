@@ -1,11 +1,30 @@
-import { validationConfig, FormValidation } from "./FormValidator.js";
-import Card from "./Card.js";
-import api from "./Api.js";
-import Section from "./Section.js";
-import PopupWithImage from "./PopupWithImage.js";
-import UserInfo from "./UserInfo.js";
-import PopupWithForm from "./PopupWithForm.js";
-import load from "./load.js";
+import "../pages/index.css"; // add import of the main stylesheets file
+import logo from "../images/logo.svg";
+import penSrc from "../images/pen.svg";
+import plusSignSrc from "../images/plussign.svg";
+
+const logoImage = document.getElementById("logo");
+logoImage.src = logo;
+
+const pen = document.getElementById("pen");
+pen.src = penSrc;
+const profilePen = document.getElementById("profilePen");
+profilePen.src = penSrc;
+
+const plusSign = document.getElementById("plusSign");
+plusSign.src = plusSignSrc;
+
+import {
+  validationConfig,
+  FormValidation,
+} from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import api from "../components/Api.js";
+import load from "../components/load.js";
 import {
   profileEditButton,
   userFullName,
@@ -24,8 +43,7 @@ import {
   profileImage,
   editImagePopup,
   imageUrlInput,
-  deleteCardPopup,
-} from "./utils.js";
+} from "../components/utils/constants.js";
 
 const imagePopup = new PopupWithImage(popupImageContainer);
 const validatorEditProfile = new FormValidation(
@@ -58,7 +76,12 @@ const editProfileForm = new PopupWithForm({
       .then((data) => {
         userInfo.setUserInfo(data.name, data.about, data.avatar);
       })
-      .then(load(editProfileWindow, true));
+      .then(load(editProfileWindow, true))
+      .then(
+        api.loadUserInfo().then((data) => {
+          userInfo.setUserInfo(data.name, data.about, data.avatar);
+        })
+      );
     editProfileForm.close();
   },
 });
