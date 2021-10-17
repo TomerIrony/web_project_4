@@ -1,4 +1,3 @@
-// webpack.config.js
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -6,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   devtool: "inline-source-map",
+  stats: "minimal",
   entry: {
     main: "./src/pages/index.js",
   },
@@ -15,12 +15,11 @@ module.exports = {
     publicPath: "",
   },
   target: ["web", "es5"],
-  stats: { children: true },
   mode: "development",
   devServer: {
-    static: path.resolve(__dirname, "./src"),
+    static: path.resolve(__dirname, "./dist"),
     compress: true,
-    port: 8080,
+    port: 3000,
     open: true,
   },
   module: {
@@ -42,7 +41,6 @@ module.exports = {
         ],
       },
       {
-        // add the rule for processing files
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
       },

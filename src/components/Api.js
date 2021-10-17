@@ -1,145 +1,101 @@
 class Api {
-  constructor(baseUrl) {
+  constructor({ baseUrl, headers }) {
     this._url = baseUrl;
-    this._inputName = document.getElementById("userInputfullName");
-    this._about = document.getElementById("userInputDescription");
+    this._headers = headers;
   }
+
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Error: ${res.status}`);
+    }
+  }
+
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
-      headers: {
-        authorization: "9bdd55c3-52f9-457f-a17d-02b8ea63be13",
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json(); // returns cards data from server
-        } else {
-          return Promise.reject(`Error: ${res.status}`);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      headers: this._headers,
+    }).then(this._checkResponse);
   }
 
   loadUserInfo() {
     return fetch(`${this._url}/users/me`, {
-      headers: {
-        authorization: "9bdd55c3-52f9-457f-a17d-02b8ea63be13",
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Error: ${res.status}`);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      headers: this._headers,
+    }).then(this._checkResponse);
   }
 
-  updateUserInfo() {
-    fetch(`${this._url}/users/me`, {
+  updateUserInfo(name, about) {
+    return fetch(`${this._url}/users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: "9bdd55c3-52f9-457f-a17d-02b8ea63be13",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
-        name: this._inputName.value,
-        about: this._about.value,
+        name: name,
+        about: about,
       }),
-    });
+    }).then(this._checkResponse);
   }
 
-  addNewCard(title, link) {
+  promiseAll() {
+    return Promise.all([this.getInitialCards(), this.loadUserInfo()]);
+  }
+
+  addNewCard(data) {
+    const { title, link } = data;
     return fetch(`${this._url}/cards`, {
       method: "POST",
-      headers: {
-        authorization: "9bdd55c3-52f9-457f-a17d-02b8ea63be13",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: title,
         link: link,
       }),
-    });
-  }
-
-  cardData() {
-    this.getInitialCards();
+    }).then(this._checkResponse);
   }
 
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
-      headers: {
-        authorization: "9bdd55c3-52f9-457f-a17d-02b8ea63be13",
-      },
-    });
-  }
-
-  likeCard(cardId) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
-      method: "PUT",
-      headers: {
-        authorization: "9bdd55c3-52f9-457f-a17d-02b8ea63be13",
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Error: ${res.status}`);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  removeLike(cardId) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
-      method: "DELETE",
-      headers: {
-        authorization: "9bdd55c3-52f9-457f-a17d-02b8ea63be13",
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Error: ${res.status}`);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      headers: this._headers,
+    }).then(this._checkResponse);
   }
 
   updateProfilePicture(inputURL) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
-      headers: {
-        authorization: "9bdd55c3-52f9-457f-a17d-02b8ea63be13",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: inputURL,
       }),
-    });
+    }).then(this._checkResponse);
   }
 
-  getCardId() {
-    return fetch(`${this._url}/cards/`, {
-      headers: {
-        authorization: "9bdd55c3-52f9-457f-a17d-02b8ea63be13",
-      },
-    });
+  likeCard(cardId) {
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
+
+  removeLike(cardId) {
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
+
+  dislikeCard(cardId) {
+    return fetch(`${this._url}/cards/likes/${card_id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._checkResponse);
   }
 }
-const api = new Api("https://around.nomoreparties.co/v1/group-12");
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+
+  headers: {
+    authorization: "9bdd55c3-52f9-457f-a17d-02b8ea63be13",
+    "Content-Type": "application/json",
+  },
+});
 export default api;
-api.getCardId();

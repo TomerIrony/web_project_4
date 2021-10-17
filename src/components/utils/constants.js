@@ -22,3 +22,4 @@ export const editImagePopup = document.getElementById("imageUpdatePopup");
 export const imageUrlInput = document.getElementById("profileImageInput");
 export const editProfilePen = document.getElementById("imagePen");
 export const deleteCardPopup = document.getElementById("deleteImagePopup");
+export const likesAmmount = document.querySelector(".card__like-numbers");

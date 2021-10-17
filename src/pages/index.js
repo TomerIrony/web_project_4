@@ -18,7 +18,7 @@ import {
   validationConfig,
   FormValidation,
 } from "../components/FormValidator.js";
-import Card from "../components/Card.js";
+import Card from "../components/Card";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
@@ -43,6 +43,8 @@ import {
   profileImage,
   editImagePopup,
   imageUrlInput,
+  deleteCardPopup,
+  likesAmmount,
 } from "../components/utils/constants.js";
 
 const imagePopup = new PopupWithImage(popupImageContainer);
@@ -51,44 +53,7 @@ const validatorEditProfile = new FormValidation(
   formEditProfile
 );
 const validatorAddCard = new FormValidation(validationConfig, newContentWindow);
-const userInfo = new UserInfo(userFullName, userDescription, profileImage);
 
-api.loadUserInfo().then((data) => {
-  userInfo.setUserInfo(data.name, data.about, data.avatar);
-});
-
-profileEditButton.addEventListener("click", function () {
-  //	Profile Edit Popup
-  const userNameInfo = userInfo.getUserInfo().userName;
-  const userJobInfo = userInfo.getUserInfo().userJob;
-  inputName.value = userNameInfo;
-  inputDescription.value = userJobInfo;
-  editProfileWindow.querySelector(".form__submit-btn").textContent = "Save";
-  editProfileForm.open();
-});
-
-const editProfileForm = new PopupWithForm({
-  popupSelector: editProfileWindow,
-  formCallBack: (data) => {
-    api.updateUserInfo();
-    api
-      .loadUserInfo()
-      .then((data) => {
-        userInfo.setUserInfo(data.name, data.about, data.avatar);
-      })
-      .then(load(editProfileWindow, true))
-      .then(
-        api.loadUserInfo().then((data) => {
-          userInfo.setUserInfo(data.name, data.about, data.avatar);
-        })
-      );
-    editProfileForm.close();
-  },
-});
-
-profileImage.addEventListener("click", function () {
-  editImageForm.open();
-});
 profileImage.addEventListener("mouseover", () => {
   document.querySelector(".profile__image-pen").style.visibility = "visible";
 });
@@ -100,61 +65,113 @@ document
   .addEventListener("mouseover", () => {
     document.querySelector(".profile__image-pen").style.visibility = "visible";
   });
-document.querySelector(".profile__image-pen").addEventListener("click", () => {
-  editImagePopup.querySelector(".form__submit-btn").textContent = "Save";
-  editImageForm.open();
-});
-
-const editImageForm = new PopupWithForm({
-  popupSelector: editImagePopup,
-  formCallBack: () => {
-    profileImage.setAttribute("src", imageUrlInput.value);
-    api
-      .updateProfilePicture(imageUrlInput.value)
-      .then(load(editImagePopup, true))
-      .then(editImageForm.close());
-  },
-});
-
-const cardCreate = (data) => {
-  const cardCreated = new Card(data, cardTemplate, {
-    handleCardClick: (evt) => imagePopup.open(evt),
-  });
-  return cardCreated;
-};
 
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
 
-newContentButton.addEventListener("click", function () {
-  // New Content Popup
-  newCardPopup.open();
-  cardNameInput.value = "";
-  imageInput.value = "";
-});
-
-const newCardPopup = new PopupWithForm({
-  popupSelector: newContentWindow,
-  formCallBack: () => {
-    api
-      .addNewCard(cardNameInput.value, imageInput.value)
-      .then(createCards)
-      .then(newCardPopup.close());
-  },
-});
-
-function createCards() {
-  api.getInitialCards().then((data) => {
-    const initalCardsList = new Section(
-      {
-        items: data,
-        renderer: (data) => {
-          initalCardsList.addItem(cardCreate(data).generateCard());
-        },
-      },
-      cardsContainer
-    );
-    initalCardsList.renderer();
+api.promiseAll().then(([cardsArray, userApi]) => {
+  const cardDeleteForm = new PopupWithForm({
+    popup: deleteCardPopup,
   });
-}
-createCards();
+  const cardToInput = (data) => {
+    const card = new Card(data, cardTemplate, userApi._id, {
+      imagePopupClick: (data) => {
+        imagePopup.open(data[0], data[1]);
+      },
+      cardLikeClick: (cardId, cardTemplate, cardLikesArray) => {
+        card.likeHandle();
+        if (card.checkIfLikes()) {
+          console.log(card.checkIfLikes());
+          api.likeCard(cardId).then(card.likeCounter());
+        } else {
+          console.log(card.checkIfLikes());
+          api.removeLike(cardId);
+        }
+      },
+      handleCardDelete: (cardId) => {
+        cardDeleteForm.open();
+        cardDeleteForm.handleDelete(() => {
+          api
+            .deleteCard(cardId)
+            .then(cardDeleteForm.close(), card.deleteCard());
+        });
+      },
+    });
+
+    return card;
+  };
+  const cardList = new Section(
+    {
+      items: cardsArray,
+      renderer: (data) => {
+        cardList.addItem(cardToInput(data).generateCard());
+      },
+    },
+    ".elements"
+  );
+  cardList.renderer();
+  console.log(userApi.name);
+
+  const editProfileForm = new PopupWithForm({
+    popup: editProfileWindow,
+    formCallBack: (data) => {
+      api
+        .updateUserInfo(data["Full Name"], data.Description)
+        .then(
+          (userFullName.textContent = data["Full Name"]),
+          (userDescription.textContent = data.Description)
+            .then(
+              load({ popup: editProfileWindow, loading: true }),
+              editProfileForm.close()
+            )
+            .finally()
+        );
+    },
+  });
+  profileEditButton.addEventListener("click", () => {
+    load({ popup: editProfileWindow, loading: false });
+    editProfileForm.open();
+  });
+  const userSettings = new UserInfo(
+    userFullName,
+    userDescription,
+    profileImage
+  );
+
+  userSettings.setUserInfo(userApi.name, userApi.about, userApi.avatar);
+
+  const userEditImage = new PopupWithForm({
+    popup: editImagePopup,
+    formCallBack: (data) => {
+      api
+        .updateProfilePicture(data["Profile Image Url"])
+        .then((profileImage.src = data["Profile Image Url"]))
+        .then(
+          load({ popup: editImagePopup, loading: true }),
+          userEditImage.close()
+        );
+    },
+  });
+
+  document
+    .querySelector(".profile__image-pen")
+    .addEventListener("click", () => {
+      load({ popup: editImagePopup, loading: false });
+      userEditImage.open();
+    });
+
+  const addNewCardForm = new PopupWithForm({
+    popup: newContentWindow,
+    formCallBack: (data) => {
+      api
+        .addNewCard(data)
+        .then((res) => {
+          cardList.prependItem(cardToInput(res).generateCard());
+        })
+        .then(addNewCardForm.close());
+    },
+  });
+  newContentButton.addEventListener("click", function () {
+    addNewCardForm.open();
+  });
+});
