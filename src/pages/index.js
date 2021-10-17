@@ -107,7 +107,7 @@ api.promiseAll().then(([cardsArray, userApi]) => {
         cardList.addItem(cardToInput(data).generateCard());
       },
     },
-    ".elements"
+    cardsContainer
   );
   cardList.renderer();
   console.log(userApi.name);
