@@ -88,7 +88,7 @@ api.promiseAll().then(([cardsArray, userApi]) => {
           api.removeLike(cardId);
         }
       },
-      handleCardDelete: (cardId) => {
+      cardDeleteCallBack: (cardId) => {
         cardDeleteForm.open();
         cardDeleteForm.handleDelete(() => {
           api

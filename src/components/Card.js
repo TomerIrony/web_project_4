@@ -3,7 +3,7 @@ export default class Card {
     data,
     template,
     userId,
-    { imagePopupClick, cardLikeClick, handleCardDelete }
+    { imagePopupClick, cardLikeClick, cardDeleteCallBack }
   ) {
     this._title = data.name;
     this._image = data.link;
@@ -14,7 +14,7 @@ export default class Card {
     this._template = template;
     this._imagePopupClick = imagePopupClick;
     this._cardLikeClick = cardLikeClick;
-    this._handleCardDelete = handleCardDelete;
+    this._cardDeleteCallBack = cardDeleteCallBack;
   }
 
   _getTemplate() {
@@ -90,7 +90,7 @@ export default class Card {
     this._element
       .querySelector(".card__close")
       .addEventListener("click", () => {
-        this._handleCardDelete(this._id);
+        this._cardDeleteCallBack(this._id);
       });
     this._element
       .querySelector(".card__like-btn")
