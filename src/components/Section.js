@@ -15,9 +15,9 @@ export default class Section {
     });
   } */
 
-  renderer() {
+  /*   renderer() {
     this._renderedItems.forEach((item) => this._renderer(item));
-  }
+  } */
 
   /* renderer(items) {
     for (let index = 0; index < items.length; index++) {
@@ -25,12 +25,12 @@ export default class Section {
     }
   }
  */
-  /* renderer() {
+  renderer() {
     this._renderedItems.forEach((item) => {
       this._renderer(item);
     });
   }
- */
+
   addItem(element) {
     this._container.append(element);
   }
