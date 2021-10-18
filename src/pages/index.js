@@ -81,11 +81,23 @@ api.promiseAll().then(([cardsArray, userApi]) => {
       cardLikeClick: (cardId, cardTemplate, cardLikesArray) => {
         card.likeHandle();
         if (card.checkIfLikes()) {
-          console.log(card.checkIfLikes());
-          api.likeCard(cardId).then(card.likeCounter());
+          api
+            .likeCard(cardId)
+            .then((number) => {
+              card.likeCounter(number.likes.length);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         } else {
-          console.log(card.checkIfLikes());
-          api.removeLike(cardId);
+          api
+            .removeLike(cardId)
+            .then((number) => {
+              card.likeCounter(number.likes.length);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       },
       cardDeleteCallBack: (cardId) => {
@@ -93,7 +105,12 @@ api.promiseAll().then(([cardsArray, userApi]) => {
         cardDeleteForm.handleDelete(() => {
           api
             .deleteCard(cardId)
-            .then(cardDeleteForm.close(), card.deleteCard());
+            .then(() => {
+              cardDeleteForm.close(), card.deleteCard();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         });
       },
     });
@@ -115,21 +132,25 @@ api.promiseAll().then(([cardsArray, userApi]) => {
   const editProfileForm = new PopupWithForm({
     popup: editProfileWindow,
     formCallBack: (data) => {
+      load({ popup: editProfileWindow, loading: true });
       api
         .updateUserInfo(data["Full Name"], data.Description)
-        .then(
-          (userFullName.textContent = data["Full Name"]),
-          (userDescription.textContent = data.Description)
-            .then(
-              load({ popup: editProfileWindow, loading: true }),
-              editProfileForm.close()
-            )
-            .finally()
-        );
+        .then(() => {
+          userSettings.setUserInfo(data["Full Name"], data.Description);
+        })
+        .finally(
+          load({ popup: editProfileWindow, loading: false }),
+          editProfileForm.close()
+        )
+        .catch((err) => {
+          console.log(err);
+        });
     },
   });
   profileEditButton.addEventListener("click", () => {
-    load({ popup: editProfileWindow, loading: false });
+    const userNameAndJob = userSettings.getUserInfo();
+    inputName.value = userNameAndJob.userName;
+    inputDescription.value = userNameAndJob.userJob;
     editProfileForm.open();
   });
   const userSettings = new UserInfo(
@@ -143,20 +164,30 @@ api.promiseAll().then(([cardsArray, userApi]) => {
   const userEditImage = new PopupWithForm({
     popup: editImagePopup,
     formCallBack: (data) => {
+      load({ popup: editImagePopup, loading: true });
+
       api
         .updateProfilePicture(data["Profile Image Url"])
-        .then((profileImage.src = data["Profile Image Url"]))
-        .then(
-          load({ popup: editImagePopup, loading: true }),
+        .then(() => {
+          userSettings.setUserInfo(
+            userApi.name,
+            userApi.about,
+            data["Profile Image Url"]
+          );
+        })
+        .finally(
+          load({ popup: editImagePopup, loading: false }),
           userEditImage.close()
-        );
+        )
+        .catch((err) => {
+          console.log(err);
+        });
     },
   });
 
   document
     .querySelector(".profile__image-pen")
     .addEventListener("click", () => {
-      load({ popup: editImagePopup, loading: false });
       userEditImage.open();
     });
 
@@ -168,10 +199,14 @@ api.promiseAll().then(([cardsArray, userApi]) => {
         .then((res) => {
           cardList.prependItem(cardToInput(res).generateCard());
         })
-        .then(addNewCardForm.close());
+        .then(addNewCardForm.close())
+        .catch((err) => {
+          console.log(err);
+        });
     },
   });
   newContentButton.addEventListener("click", function () {
+    validatorAddCard.resetValidation();
     addNewCardForm.open();
   });
 });

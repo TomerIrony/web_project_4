@@ -2,6 +2,9 @@ export class FormValidation {
   constructor(validationConfig, formElement) {
     this._validationConfig = validationConfig;
     this._formElement = formElement;
+    this._button = this._formElement.querySelector(
+      this._validationConfig.submitButtonSelector
+    );
   }
 
   _showInputError = (inputElement, errorMessage) => {
@@ -69,6 +72,13 @@ export class FormValidation {
       });
     });
   };
+
+  resetValidation() {
+    const { inactiveButtonClass } = this._validationConfig;
+    if (this._button) {
+      this._button.classList.add(inactiveButtonClass);
+    }
+  }
 
   enableValidation() {
     const formList = Array.from(

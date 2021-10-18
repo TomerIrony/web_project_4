@@ -51,7 +51,11 @@ export default class Card {
     }
   }
 
-  likeCounter() {
+  likeCounter(e) {
+    this._element.querySelector(".card__like-numbers").textContent = e;
+  }
+
+  initalCounter() {
     this._element.querySelector(".card__like-numbers").textContent =
       this._likes.length;
   }
@@ -108,7 +112,7 @@ export default class Card {
         this._imagePopupClick([this._title, this._image]);
       });
     this.likeCounter();
-
+    this.initalCounter();
     return this._element;
   }
 }
