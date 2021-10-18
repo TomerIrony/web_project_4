@@ -24,7 +24,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import api from "../components/Api.js";
-import load from "../components/load.js";
+import load from "../utils/load.js";
 import {
   profileEditButton,
   userFullName,
@@ -45,7 +45,7 @@ import {
   imageUrlInput,
   deleteCardPopup,
   likesAmmount,
-} from "../components/utils/constants.js";
+} from "../utils/constants.js";
 
 const imagePopup = new PopupWithImage(popupImageContainer);
 const validatorEditProfile = new FormValidation(
@@ -191,6 +191,9 @@ api.promiseAll().then(([cardsArray, userApi]) => {
     },
   });
 
+  document.querySelector(".profile__image").addEventListener("click", () => {
+    userEditImage.open();
+  });
   document
     .querySelector(".profile__image-pen")
     .addEventListener("click", () => {
