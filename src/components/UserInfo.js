@@ -8,7 +8,8 @@ export default class UserInfo {
   getUserInfo() {
     const userName = this._userName.textContent;
     const userJob = this._userJob.textContent;
-    const userInfo = { userName, userJob };
+    const userAvatar = this._avatar.src;
+    const userInfo = { userName, userJob, userAvatar };
     return userInfo;
   }
 

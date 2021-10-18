@@ -136,7 +136,12 @@ api.promiseAll().then(([cardsArray, userApi]) => {
       api
         .updateUserInfo(data["Full Name"], data.Description)
         .then(() => {
-          userSettings.setUserInfo(data["Full Name"], data.Description);
+          const tempUserImage = userSettings.getUserInfo();
+          userSettings.setUserInfo(
+            data["Full Name"],
+            data.Description,
+            tempUserImage.userAvatar
+          );
         })
         .finally(
           load({ popup: editProfileWindow, loading: false }),
@@ -169,9 +174,10 @@ api.promiseAll().then(([cardsArray, userApi]) => {
       api
         .updateProfilePicture(data["Profile Image Url"])
         .then(() => {
+          const newUserInfo = userSettings.getUserInfo();
           userSettings.setUserInfo(
-            userApi.name,
-            userApi.about,
+            newUserInfo.userName,
+            newUserInfo.userJob,
             data["Profile Image Url"]
           );
         })
