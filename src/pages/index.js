@@ -143,10 +143,10 @@ api.promiseAll().then(([cardsArray, userApi]) => {
             tempUserImage.userAvatar
           );
         })
-        .finally(
+        .finally(() => {
           load({ popup: editProfileWindow, loading: false }),
-          editProfileForm.close()
-        )
+            editProfileForm.close();
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -208,7 +208,9 @@ api.promiseAll().then(([cardsArray, userApi]) => {
         .then((res) => {
           cardList.prependItem(cardToInput(res).generateCard());
         })
-        .then(addNewCardForm.close())
+        .then(() => {
+          addNewCardForm.close();
+        })
         .catch((err) => {
           console.log(err);
         });
