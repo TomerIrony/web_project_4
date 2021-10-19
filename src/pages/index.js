@@ -53,7 +53,7 @@ const validatorEditProfile = new FormValidation(
   formEditProfile
 );
 const validatorAddCard = new FormValidation(validationConfig, newContentWindow);
-
+const validatorImageEdit = new FormValidation(validationConfig, editImagePopup);
 profileImage.addEventListener("mouseover", () => {
   document.querySelector(".profile__image-pen").style.visibility = "visible";
 });
@@ -68,6 +68,7 @@ document
 
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
+validatorImageEdit.enableValidation();
 
 api.promiseAll().then(([cardsArray, userApi]) => {
   const cardDeleteForm = new PopupWithForm({
@@ -79,21 +80,21 @@ api.promiseAll().then(([cardsArray, userApi]) => {
         imagePopup.open(data[0], data[1]);
       },
       cardLikeClick: (cardId, cardTemplate, cardLikesArray) => {
-        card.likeHandle();
+        /* card.likeHandle(); */
         if (card.checkIfLikes()) {
           api
-            .likeCard(cardId)
+            .removeLike(cardId)
             .then((number) => {
-              card.likeCounter(number.likes.length);
+              card.likeHandle(number.likes.length);
             })
             .catch((err) => {
               console.log(err);
             });
         } else {
           api
-            .removeLike(cardId)
+            .likeCard(cardId)
             .then((number) => {
-              card.likeCounter(number.likes.length);
+              card.likeHandle(number.likes.length);
             })
             .catch((err) => {
               console.log(err);
@@ -127,7 +128,6 @@ api.promiseAll().then(([cardsArray, userApi]) => {
     cardsContainer
   );
   cardList.renderer();
-  console.log(userApi.name);
 
   const editProfileForm = new PopupWithForm({
     popup: editProfileWindow,
@@ -158,6 +158,7 @@ api.promiseAll().then(([cardsArray, userApi]) => {
     const userNameAndJob = userSettings.getUserInfo();
     inputName.value = userNameAndJob.userName;
     inputDescription.value = userNameAndJob.userJob;
+    validatorEditProfile.resetValidation();
     editProfileForm.open();
   });
   const userSettings = new UserInfo(
@@ -186,7 +187,9 @@ api.promiseAll().then(([cardsArray, userApi]) => {
         .then(() => {
           userEditImage.close();
         })
-        .finally(load({ popup: editImagePopup, loading: false }))
+        .finally(() => {
+          load({ popup: editImagePopup, loading: false });
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -199,6 +202,7 @@ api.promiseAll().then(([cardsArray, userApi]) => {
   document
     .querySelector(".profile__image-pen")
     .addEventListener("click", () => {
+      validatorImageEdit.resetValidation();
       userEditImage.open();
     });
 

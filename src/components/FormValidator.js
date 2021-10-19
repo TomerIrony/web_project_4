@@ -77,6 +77,7 @@ export class FormValidation {
     const { inactiveButtonClass } = this._validationConfig;
     if (this._button) {
       this._button.classList.add(inactiveButtonClass);
+      this._button.disabled = true;
     }
   }
 

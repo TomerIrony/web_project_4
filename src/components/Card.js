@@ -60,7 +60,8 @@ export default class Card {
       this._likes.length;
   }
 
-  likeHandle() {
+  likeHandle(e) {
+    this._element.querySelector(".card__like-numbers").textContent = e;
     if (
       !this._element
         .querySelector(".card__like-btn")
