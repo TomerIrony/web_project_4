@@ -81,16 +81,11 @@ export class FormValidation {
   }
 
   enableValidation() {
-    const formList = Array.from(
-      document.querySelectorAll(this._validationConfig.formSelector)
-    );
-    formList.forEach(() => {
-      this._formElement.addEventListener("submit", (evt) => {
-        evt.preventDefault();
-      });
-
-      this._setEventListeners();
+    this._formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
     });
+
+    this._setEventListeners();
   }
 }
 
