@@ -143,9 +143,11 @@ api.promiseAll().then(([cardsArray, userApi]) => {
             tempUserImage.userAvatar
           );
         })
+        .then(() => {
+          editProfileForm.close();
+        })
         .finally(() => {
-          load({ popup: editProfileWindow, loading: false }),
-            editProfileForm.close();
+          load({ popup: editProfileWindow, loading: false });
         })
         .catch((err) => {
           console.log(err);
@@ -181,10 +183,10 @@ api.promiseAll().then(([cardsArray, userApi]) => {
             data["Profile Image Url"]
           );
         })
-        .finally(
-          load({ popup: editImagePopup, loading: false }),
-          userEditImage.close()
-        )
+        .then(() => {
+          userEditImage.close();
+        })
+        .finally(load({ popup: editImagePopup, loading: false }))
         .catch((err) => {
           console.log(err);
         });
